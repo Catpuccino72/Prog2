@@ -21,10 +21,6 @@ public class User{
 		this.Passwort = Passwort;
 	}
 	
-	//public void setItem(Item item, int index) {
-	//	this.Items[index] = item;
-	//}
-	
 	public void setItems(Item[] it) {
 		this.Items = it;
 	}
@@ -36,10 +32,6 @@ public class User{
 	public String getPasswort() {
 		return this.Passwort;
 	}
-	
-	//public Item getItem(int Index) {
-	//	return this.Items[Index];
-	//}
 	
 	public Item[] getItems() {
 		return this.Items;
@@ -55,8 +47,7 @@ public class User{
 					this.Items[index] = this.Items[index + 1];
 				}
 				this.Items[this.Items.length - 1] = null;
-				
-				// create new array of length previous-1
+
 				index = 0;
 				Item[] newItems = new Item[this.Items.length - 1];
 				for (Item it: this.Items) {
@@ -64,6 +55,7 @@ public class User{
 					newItems[index] = it;
 					index++;
 				}
+				
 				this.Items = newItems;
 				return true;
 			}
@@ -82,8 +74,6 @@ public class User{
 		}
 		newItems[newItems.length - 1] = item;
 		this.Items = newItems;
-		//System.out.println("added new Item: " + item.getName() 
-		//+ " -- User: " + this.getBenutzername() + " -- new length of item array: " + newItems.length);
 		return true;
 	}
 }

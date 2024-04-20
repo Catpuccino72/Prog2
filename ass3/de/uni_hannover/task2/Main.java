@@ -83,24 +83,5 @@ class Main {
 		System.out.print(mp.filterMarket(Category.ELECTRONICS));
 		System.out.print(mp.filterMarket(Category.FURNITURE));
 		System.out.print(mp.filterMarket(Category.OTHER));
-		
-		
-		
-		/*
-		for (int n = 0; n < mp.Users.length; n++) {
-			if (n == 0) System.out.println("\n\n---MARKETPLACE USERS---\n");
-			System.out.println(mp.Users[n]);
-		}
-		
-		
-		System.out.println("\n");
-		for (User us: mp.Users) {
-			if (us == null) continue;
-			for(Item it: us.getItems()) {
-				if (it == null) continue;
-				System.out.println("Item: " + it.getName());
-			}
-		}
-		*/
 	}
 }

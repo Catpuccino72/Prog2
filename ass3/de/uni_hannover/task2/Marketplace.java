@@ -11,7 +11,6 @@ public class Marketplace{
 	
 	public boolean addUser(User user_to_insert) {
 		
-		// überprüfen, ob Benutzername einzigartig
 		for (User u: this.Users) {
 			if (u == null) continue;
 			if (u.getBenutzername() == user_to_insert.getBenutzername()) {
@@ -25,8 +24,6 @@ public class Marketplace{
 		for (User u: this.Users) {
 			if (u == null) {
 				this.Users[index] = user_to_insert;
-				//u = user_to_insert;
-				//System.out.println("added user: " + this.Users[index].getBenutzername());
 				return true;
 			}
 			index++;
@@ -40,14 +37,13 @@ public class Marketplace{
 		for (User us: this.Users) {
 			if (us != null) {
 				str = str + "\nUser: " + us.getBenutzername() + "\n";
-				//System.out.println("User found: " + us.getBenutzername());
 				for (Item it: us.getItems()) {
 					if (it != null) {
 						str = str + "[Item: " + it.getName() + "; Preis: " + it.getVerkaufspreis()+ "; Verkäufer: " 
 						+ it.getVerkäufer().getBenutzername() + "; Beschreibung: " + it.getBeschreibung() + "]\n";
 					}
 				}
-			} //else {System.out.println("not str");}
+			}
 		}
 		if (str != "") str = (str + '\n');
 		return str;
@@ -58,14 +54,13 @@ public class Marketplace{
 		for (User us: this.Users) {
 			if (us != null) {
 				str = str + "\nUser: " + us.getBenutzername() + "\n";
-				//System.out.println("User found: " + us.getBenutzername());
 				for (Item it: us.getItems()) {
 					if (it != null && it.getCategory() == category) {
 						str = str + "[Item: " + it.getName() + "; Kategorie: " + it.getCategory().str() + "; Preis: " + it.getVerkaufspreis()+ "; Verkäufer: " 
 						+ it.getVerkäufer().getBenutzername() + "; Beschreibung: " + it.getBeschreibung() + "]\n";
 					}
 				}
-			} //else {System.out.println("not str");}
+			}
 		}
 		if (str != "") str = (str + '\n');
 		return str;
