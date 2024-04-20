@@ -11,3 +11,5 @@
 # sh files
 *.sh
 
+./**/out/
+
