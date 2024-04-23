@@ -1,10 +1,25 @@
 package game;
 import game.objects.*;
 import game.objects.player.*;
+
+/**
+ * This class provides the methods to output the current state of the game
+ * This class also implements the rules of the game
+ * 
+ * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+ * @version 2024 April 22
+ */
 public class GameView {
+	/** saves the gamefield */
 	private GameObject gamefield[][];
+	/** represents the NPC playing the game */
 	private NPC npc;
 	
+	/**
+	 * This method creates an initial game state.
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 */
 	public GameView() {
 		this.gamefield = new GameObject [20][3];
 		this.gamefield[0][0] = GameObject.NPC;
@@ -27,6 +42,12 @@ public class GameView {
 		}
 	}
 	
+	/**
+	 * This method returns a String representation of the current game state.
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 * @return the game state as a String
+	 */
 	public String str() {
 		String str = "";
 		for (int y_coord = 0; y_coord < 3; y_coord++) {
@@ -47,6 +68,11 @@ public class GameView {
 		return str;
 	}
 	
+	/**
+	 * By calling this method a game is played from the beginning following the defined rules until the game ends.
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 */
 	public void play() {
 		while(true) {
 			System.out.println(this.str());
@@ -58,7 +84,12 @@ public class GameView {
 			else this.npc.walkRight();
 		}
 	}
-	
+
+	/**
+	 * This method plays 1 game until the end if called.
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 */
 	public static void main (String[] args) {
 		GameView gv = new GameView();
 		gv.play();

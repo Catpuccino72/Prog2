@@ -3,8 +3,20 @@ import de.uni_hannover.task2.Marketplace;
 import de.uni_hannover.task2.auth.*;
 import de.uni_hannover.task2.offerings.*;
 
-
+/**
+ * This class tests the program.
+ * 
+ * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+ * @version 2024 April 22
+ */
 class Main {
+
+	/**
+	 * This method adds users and items to the marketplace and prints the state of the marketplace each time
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 * @return the game state as a String
+	 */
 	public static void main (String[] args) {
 		Marketplace mp = new Marketplace();
 		

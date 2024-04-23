@@ -2,13 +2,33 @@ package de.uni_hannover.task2;
 import de.uni_hannover.task2.auth.*;
 import de.uni_hannover.task2.offerings.*;
 
+/**
+ * This class provides multiple methods to manage the marketplace.
+ * It also implements methods to print the state of the marketplace.
+ * 
+ * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+ * @version 2024 April 22
+ */
 public class Marketplace{
+	/** saves all of the users. */
 	public User[] Users;
 	
+	/**
+	 * This method creates an initial marketplace with a maximum of 10 users.
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 */
 	public Marketplace() {
 		this.Users = new User[10];
 	}
 	
+	/**
+	 * This method adds an user to the marketplace.
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 * @param user_to_insert the user to add
+	 * @return if the user was added
+	 */
 	public boolean addUser(User user_to_insert) {
 		
 		for (User u: this.Users) {
@@ -32,6 +52,12 @@ public class Marketplace{
 		return false;
 	}
 	
+	/**
+	 * This method returns a string representation of the marketplace.
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 * @return the marketplace as a String.
+	 */
 	public String str() {
 		String str = "\n\nMARKETPLACE \n";
 		for (User us: this.Users) {
@@ -49,6 +75,13 @@ public class Marketplace{
 		return str;
 	}
 	
+	/**
+	 * This method returns a filtered string representation of the marketplace.
+	 * It filters by category.
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 * @return the marketplace as a String.
+	 */
 	public String filterMarket(Category category){
 		String str = "\n\nMARKETPLACE \n";
 		for (User us: this.Users) {

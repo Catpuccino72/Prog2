@@ -17,4 +17,7 @@
 
 *.iml
 *.xml
+*.html
+*.js
+*.css
 
