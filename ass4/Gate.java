@@ -17,7 +17,7 @@ public class Gate {
 				boolean second = false;
 				if (i == 1) second = true;
 				System.out.println("[ " + n + " | " + i + " | "
-				+ this.evaluate(first, second) + " ]";
+				+ this.evaluate(first, second) + " ]");
 			}
 		}
 	}
