@@ -124,7 +124,7 @@ public class Marketplace{
 	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
 	 * @param username the username of the login credetials pair.
 	 * @param password the password of the login credetials pair.
-	 * @return the User that matches the login credentials.
+	 * @return the user that matches the login credentials.
 	 */
 	public User login(String username, String password){
 		for (int n = 0; n < Users.length; n++) {
