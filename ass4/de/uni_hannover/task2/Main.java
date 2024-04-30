@@ -33,7 +33,6 @@ class Main {
 		User Kunde6 = new User("Kunde6", "1234");
 		User Kunde7 = new User("Kunde7", "1234");
 		User Kunde8 = new User("Kunde8", "1234");
-		User Kunde9 = new User("Kunde9", "1234");
 		
 		User Rewe = new User("Rewe", "EinsicheresPasswort");
 		
@@ -51,7 +50,6 @@ class Main {
 		mp.addUser(Kunde6);
 		mp.addUser(Kunde7);
 		mp.addUser(Kunde8);
-		mp.addUser(Kunde9);
 		
 		
 		mp.Users[0].addItem(it1);
