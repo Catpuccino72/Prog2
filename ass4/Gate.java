@@ -1,6 +1,6 @@
 public class Gate {
 	
-	private String symbol;
+	public String symbol = " ";
 	
 	public boolean evaluate(boolean a, boolean b){
 		return false;
@@ -9,16 +9,20 @@ public class Gate {
 	public void table(){
 		boolean first;
 		boolean second;
-		System.out.println("[ A | B | Y = A " + symbol + " B]");
+		int evaluated;
+		System.out.println("[ A | B | Y = A " + this.symbol + " B ]");
 		for (int n = 0; n < 2; n++) {
 			for (int i = 0; i < 2; i++) {
-				boolean first = false;
+				first = false;
 				if (n == 1) first = true;
-				boolean second = false;
+				second = false;
 				if (i == 1) second = true;
-				System.out.println("[ " + n + " | " + i + " | "
-				+ this.evaluate(first, second) + " ]");
+				evaluated = 0;
+				if (this.evaluate(first, second)) evaluated = 1;
+				System.out.println("[ " + n + " | " + i + " |     "
+				+ evaluated + "     ]");
 			}
 		}
+		System.out.println("");
 	}
 }
