@@ -98,28 +98,25 @@ public class cli {
             if (entry == 2) {
                 Verkaufspreis = scanner.nextFloat();
             } else if (entry < 4){
-                input = scanner.nextLine();
+                input = new java.util.Scanner( System.in ).nextLine();
                 if (input.equals("4")) System.exit(0);
                 if (input.equals("abbruch")) return;
             }
             
-            
-
             if (entry == 1) {
                 duplicate_name = false;
                 for (Item i: user.getItems()) {
                     if (i.getName().equals(input)) {
-                        System.out.println("anderes Item mit demselben Namen bereits vorhanden!");
+                        System.out.print("anderes Item mit demselben Namen ist bereits vorhanden!");
                         duplicate_name = true;
                     }
                 }
 
-                if (!duplicate_name && !input.equals("")) {
+                if (!duplicate_name && !input.isEmpty()) {
                     Name = input;
                     entry++;
-                    System.out.println("");
-                    continue;
                 }
+                System.out.println("");
                 continue;
             }
             if (entry == 2) {
