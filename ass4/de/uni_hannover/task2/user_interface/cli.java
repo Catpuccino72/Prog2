@@ -144,7 +144,7 @@ public class cli {
         String input;
         System.out.println("Bitte geben Sie den Namen des Items an, welches entfernt werden soll");
         System.out.println(mp.filterMarketbyUser(user));
-        input = scanner.nextLine();
+        input = new java.util.Scanner( System.in ).nextLine();
         for (int n = 0; n < user.getItems().length; n++) {
             if (user.getItems()[n].getName().equals(input)) {
                 System.out.println("entfernt!");
@@ -198,7 +198,7 @@ public class cli {
         System.out.println(mp.filterMarketbyUser(user));
         System.out.println("um zum Hauptmenü zurückzukehren: abbruch");
         while(true) {
-            str_input = scanner.nextLine();
+            str_input = new java.util.Scanner( System.in ).nextLine();
             if (str_input.equals("abbruch")) return;
             for (int n = 0; n < user.getItems().length; n++) {
                 if (user.getItems()[n].getName().equals(str_input)) {
@@ -226,7 +226,7 @@ public class cli {
         if (input == 1 || input == 3) {
             if (input == 1) System.out.print("neuer Name: ");
             if (input == 3) System.out.print("neue Beschreibung: ");
-            str = scanner.nextLine();
+            str = new java.util.Scanner( System.in ).nextLine();
             if (input == 1) {
                 duplicate_name = false;
                 for (Item i: user.getItems()) {
