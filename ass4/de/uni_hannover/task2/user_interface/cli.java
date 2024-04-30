@@ -108,6 +108,7 @@ public class cli {
     public void remove_item() {
         String input;
         System.out.println("Bitte geben Sie den Namen des Items an, welches entfernt werden soll");
+        System.out.println(mp.filterMarketbyUser(user));
         input = new java.util.Scanner(System.in).nextLine();
         for (int n = 0; n < user.getItems().length; n++) {
             if (user.getItems()[n].getName().equals(input)) {
