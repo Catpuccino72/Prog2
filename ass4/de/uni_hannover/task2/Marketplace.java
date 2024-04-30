@@ -26,8 +26,8 @@ public class Marketplace{
 	 * This method adds an user to the marketplace.
 	 * 
 	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
-	 * @param user_to_insert the user to add
-	 * @return if the user was added
+	 * @param user_to_insert the user to add.
+	 * @return if the user was added.
 	 */
 	public boolean addUser(User user_to_insert) {
 		
@@ -76,10 +76,10 @@ public class Marketplace{
 	}
 	
 	/**
-	 * This method returns a filtered string representation of the marketplace.
-	 * It filters by category.
+	 * This method returns a string representation of the marketplace filtered by category.
 	 * 
 	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 * @param category the category to filter by.
 	 * @return the marketplace as a String.
 	 */
 	public String filterMarket(Category category){
@@ -99,6 +99,13 @@ public class Marketplace{
 		return str;
 	}
 	
+	/**
+	 * This method returns a string representation of the marketplace filtered by the user.
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 * @param user the user to filter by.
+	 * @return the marketplace as a String.
+	 */
 	public String filterMarketbyUser(User user){
 		String str = "\n\nMARKETPLACE \n";
 		for (Item it: user.getItems()) {
@@ -111,6 +118,14 @@ public class Marketplace{
 		return str;
 	}
 
+	/**
+	 * This method searches for the user that matches both the username and the password.
+	 * 
+	 * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+	 * @param username the username of the login credetials pair.
+	 * @param password the password of the login credetials pair.
+	 * @return the User that matches the login credentials.
+	 */
 	public User login(String username, String password){
 		for (int n = 0; n < Users.length; n++) {
 			if (Users[n].getBenutzername().equals(username) && Users[n].getPasswort().equals(password)) return Users[n];

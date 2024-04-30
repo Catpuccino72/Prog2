@@ -4,9 +4,17 @@ import de.uni_hannover.task2.auth.User;
 import de.uni_hannover.task2.offerings.Item;
 import de.uni_hannover.task2.offerings.Category;
 
+/**
+ * This class provides multiple methods to manage the interface of the marketplace.
+ * It also uses a user to decide whether a user is allowed to change the properties of an item.
+ * 
+ * @author Andreas-Daniel Lebedyuk;andreas-daniel.lebedyuk@stud.uni-hannover.de
+ * @version 2024 April 22
+ */
 public class cli {
-
+    /** saves the marketplace */
     Marketplace mp;
+    /** saves the user accessing the marketplace. */
     User user;
 
     public cli(Marketplace marketplace, User user) {
@@ -42,7 +50,7 @@ public class cli {
         Category Kategorie = Category.OTHER;
         boolean duplicate_name;
 
-        System.out.println("zum Abbrechen: abbruch");
+        System.out.println("um zum Hauptmenü zurückzukehren: abbruch");
         while(true) {
             if (entry == 1) System.out.print("Name: ");
             if (entry == 2) System.out.print("Verkaufspreis: ");
@@ -67,7 +75,7 @@ public class cli {
             } else if (entry < 4){
                 input = new java.util.Scanner(System.in).nextLine();
                 if (input.equals("4")) System.exit(0);
-                if (input.equals("abbruch")) break;
+                if (input.equals("abbruch")) return;
             }
             
             
@@ -146,10 +154,10 @@ public class cli {
 
         System.out.print("Wählen Sie aus den folgenden Items: ");
         System.out.println(mp.filterMarketbyUser(user));
-        System.out.println("exit um Programm zu beenden");
+        System.out.println("um zum Hauptmenü zurückzukehren: abbruch");
         while(true) {
             str_input = new java.util.Scanner(System.in).nextLine();
-            if (str_input.equals("exit")) System.exit(0);
+            if (str_input.equals("abbruch")) return;
             for (int n = 0; n < user.getItems().length; n++) {
                 if (user.getItems()[n].getName().equals(str_input)) {
                     item = (user.getItems()[n]);
@@ -175,12 +183,12 @@ public class cli {
 
         if (input == 1 || input == 3) {
             if (input == 1) System.out.print("neuer Name: ");
-            if (input == 2) System.out.print("neue Beschreibung: ");
+            if (input == 3) System.out.print("neue Beschreibung: ");
             str = new java.util.Scanner(System.in).nextLine();
             if (input == 1) {
                 duplicate_name = false;
                 for (Item i: user.getItems()) {
-                    if (i == item) {
+                    if (i.getName().equals(str)) {
                         System.out.println("anderes Item mit demselben Namen bereits vorhanden!");
                         duplicate_name = true;
                     }
