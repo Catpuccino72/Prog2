@@ -9,6 +9,8 @@ public enum Action {
                 return 'A';
             case B:
                 return 'B';
+            default:
+                return 'X';
         }
     }
 }

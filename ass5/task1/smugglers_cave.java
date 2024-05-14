@@ -1,18 +1,18 @@
 package task1;
-public class mutineers_island implements State{
+public class smugglers_cave implements State{
     public State transition(Action action) {
         switch (action) {
             case A:
-                return new smugglers_cave();
+                return new pirates_island();
             case B:
-                return new dead_mans_island();
+                return new treasure_island();
             default:
-                return new mutineers_island();
+                return new smugglers_cave();
         }
     }
 
     public String str() {
-        return "Multineers' Island";
+        return "Smugglers' Cave";
     }
 
     public String info(){
