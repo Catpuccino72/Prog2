@@ -1,0 +1,1 @@
+javac --module-path /home/andi/coding/Prog2/Labyrinth/javafx/javafx-sdk-22.0.1/lib/ --add-modules=javafx.controls Labyrinth.java
