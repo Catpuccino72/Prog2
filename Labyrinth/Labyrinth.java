@@ -1,20 +1,28 @@
+package Gruppenaufgabe;
 import java.io.*;
+
+import javafx.util.Pair;
 
 public class Labyrinth implements java.io.Serializable{
     private final int height;
     private final int width;
-    Cell[][] cells;
+    public Cell[][] cells;
 
     public Labyrinth(int height, int width) {
         this.height = height;
         this.width = width;
-        cells = new Cell[height][width];
+        cells = new Cell[width][height];
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x) {
+                cells[x][y] = new Cell(x, y);
+            }
+        }
     }
 
     public void setAllWalls() {
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
-                cells[y][x].setAllWalls();
+                cells[x][y].setAllWalls();
             }
         }
     }
@@ -22,7 +30,7 @@ public class Labyrinth implements java.io.Serializable{
     public void removeAllWalls() {
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
-                cells[y][x].removeAllWalls();
+                cells[x][y].removeAllWalls();
             }
         }
     }
@@ -35,7 +43,9 @@ public class Labyrinth implements java.io.Serializable{
         return width;
     }
 
-    class Cell {
+    public class Cell {
+        Pair<Integer, Integer> coordinates;
+
         public static enum WallsOrientation{
             Top,
             Left,
@@ -51,8 +61,46 @@ public class Labyrinth implements java.io.Serializable{
 
         int Walls;
 
-        public Cell() {
+        public Cell(int x, int y) {
+            coordinates = new Pair<Integer,Integer>(x, y);
             Walls = 0;
+        }
+
+        public Cell getNeighbor(WallsOrientation orientation){
+            switch (orientation) {
+                case Top:
+                    return getTopCell();
+
+                case Left:
+                    return getLeftCell();
+
+                case Right:
+                    return getRightCell();
+
+                case Bottom:
+                    return getBottomCell();
+            }
+            return null;
+        }
+
+        public Cell getTopCell() {
+            if (this.coordinates.getValue() == 0) return null;
+            return cells[this.coordinates.getKey()][this.coordinates.getValue()-1];
+        }
+    
+        public Cell getRightCell() {
+            if (this.coordinates.getKey() == width-1) return null;
+            return cells[this.coordinates.getKey()+1][this.coordinates.getValue()];
+        }
+    
+        public Cell getBottomCell() {
+            if (this.coordinates.getValue() == height-1) return null;
+            return cells[this.coordinates.getKey()][this.coordinates.getValue()+1];
+        }
+    
+        public Cell getLeftCell() {
+            if (this.coordinates.getKey() == 0) return null;
+            return cells[this.coordinates.getKey()-1][this.coordinates.getValue()];
         }
 
         public void setAllWalls() {
@@ -63,65 +111,91 @@ public class Labyrinth implements java.io.Serializable{
             Walls = 0;
         }
 
-        public void placeWall(WallsOrientation orientation) {
+        public void placeWall(WallsOrientation orientation) throws Exception {
             switch (orientation) {
                 case Top:
                     Walls |= WALL_TOP;
+                    if (this.getTopCell() != null) {
+                        this.getTopCell().Walls |= WALL_BOTTOM;
+                    }
                     break;
 
                 case Left:
                     Walls |= WALL_RIGHT;
+                    if (this.getRightCell() != null) {
+                        this.getRightCell().Walls |= WALL_LEFT;
+                    }
                     break;
 
                 case Right:
                     Walls |= WALL_BOTTOM;
+                    if (this.getBottomCell() != null) {
+                        this.getBottomCell().Walls |= WALL_TOP;
+                    }
                     break;
 
                 case Bottom:
                     Walls |= WALL_LEFT;
+                    if (this.getLeftCell() != null) {
+                        this.getLeftCell().Walls |= WALL_RIGHT;
+                    }
                     break;
+
+                default:
+                    throw new Exception("no valid orientation");
             }
         }
 
-        public void removeWall(WallsOrientation orientation) {
+        public void removeWall(WallsOrientation orientation) throws Exception {
             switch (orientation) {
                 case Top:
                     Walls ^= WALL_TOP;
+                    if (this.getTopCell() != null) {
+                        this.getTopCell().Walls ^= WALL_BOTTOM;
+                    }
                     break;
 
                 case Left:
                     Walls ^= WALL_RIGHT;
+                    if (this.getRightCell() != null) {
+                        this.getRightCell().Walls ^= WALL_LEFT;
+                    }
                     break;
 
                 case Right:
                     Walls ^= WALL_BOTTOM;
+                    if (this.getBottomCell() != null) {
+                        this.getBottomCell().Walls ^= WALL_TOP;
+                    }
                     break;
 
                 case Bottom:
                     Walls ^= WALL_LEFT;
+                    if (this.getLeftCell() != null) {
+                        this.getLeftCell().Walls ^= WALL_RIGHT;
+                    }
                     break;
+                default:
+                    throw new Exception("no valid orientation");
             }
         }
 
-        public boolean isWallSet(WallsOrientation orientation) {
+        public boolean isWallSet(WallsOrientation orientation) throws Exception {
             int WallsShifted = Walls;
             switch (orientation) {
                 case Top:
-                    break;
+                    return (WallsShifted & 1) == 1;
 
                 case Left:
-                    WallsShifted >>= 1;
-                    break;
+                    return ((WallsShifted >>= 1) & 1) == 1;
 
                 case Right:
-                    WallsShifted >>= 2;
-                    break;
+                    return ((WallsShifted >>= 2) & 1) == 1;
 
                 case Bottom:
-                    WallsShifted >>= 3;
-                    break;
+                    return ((WallsShifted >>= 3) & 1) == 1;
             }
-            return ((WallsShifted & 1) == 1);
+            throw new Exception("no valid orientation");
         }
     }
 }
