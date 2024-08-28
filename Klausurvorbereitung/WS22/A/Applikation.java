@@ -38,7 +38,8 @@ public class Applikation {
             System.out.println(m.toString());
         }
 
-        sortPoints(l);
+        Collections.sort(l);
+        //sortPoints(l);
 
         System.out.println("sortierte Punkte:");
         for (MPoint m : l) {
